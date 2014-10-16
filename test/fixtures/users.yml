@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  poster: false
+  moderator: false
+  administrator: false
+
+two:
+  name: MyString
+  poster: false
+  moderator: false
+  administrator: false
