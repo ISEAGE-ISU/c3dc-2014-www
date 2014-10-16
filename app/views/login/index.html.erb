@@ -1,0 +1,14 @@
+<h1>Login#index</h1>
+<p>Find me in app/views/login/index.html.erb</p>
+
+<%= form_for(@login) do |f| %>
+<div class="field">
+  <%= f.label :name %><br />
+  <%= f.text_field :username %>
+</div>
+
+<div class="field">
+  <%= f.label :Password %><br />
+  <%= f.password_field :username %>
+</div>
+<% end %>

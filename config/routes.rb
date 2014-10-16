@@ -1,4 +1,13 @@
 C3web::Application.routes.draw do
+  get "login/index"
+
+  get "login/in"
+
+  get "login/out"
+
+  resources :comments
+
+
   resources :posts
 
 
