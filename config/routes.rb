@@ -1,4 +1,6 @@
 C3web::Application.routes.draw do
+  get "/", to: "index#index"
+
   get "login/", to: "login#index"
 
   get "login/in"

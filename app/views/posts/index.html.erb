@@ -19,7 +19,7 @@
     <td><%= User.find(post.user_id).name %></td>
     <td><%= link_to 'Show', post %></td>
     
-<% if session[:user_id] != 0 and (post.user_id == session[:user_id] or User.find(session[:user_id]).moderator)%>
+<% if session[:user_id].to_i != 0 and (post.user_id == session[:user_id] or User.find(session[:user_id]).moderator)%>
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
     <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 <% end %>
@@ -29,4 +29,6 @@
 
 <br />
 
+<% if session[:user_id].to_i != 0 %>
 <%= link_to 'New Post', new_post_path %>
+<% end %>

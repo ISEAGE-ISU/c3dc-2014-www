@@ -10,11 +10,27 @@
 
 <div id="header">
 <% if session[:user_id].to_i != 0 %>
-  Logged in as <%= User.find(session[:user_id]).name %>
+  Logged in as <%= User.find(session[:user_id]).name %> |
+  <%= link_to "Profile", "/users/#{session[:user_id]}" %> |
+  <%= link_to "Log Out", "/login/out" %>
+<% else %>
+  <%= link_to "Log In", "/login" %> |
+  <%= link_to "Sign Up", "/users/new" %>
 <% end %>
 </div>
 
 <%= yield %>
+
+<div id="footer">
+<p>
+<% if session[:user_id].to_i != 0 and User.find(session[:user_id]).moderator%>
+  <%= link_to "Posts Moderation", "/posts" %>
+<% end %>
+<% if session[:user_id].to_i != 0 and User.find(session[:user_id]).administrator%>
+  <%= link_to "Users Administration", "/users" %>
+<% end %>
+</p>
+</div>
 
 </body>
 </html>
