@@ -24,8 +24,12 @@
     <%= f.text_area :body %>
   </div>
   <div class="field">
-    <%= f.label :user %><br />
-    <%= f.text_field :user_id %>
+    <% if @post.id.nil? %>
+    <%   user = session[:user_id] %>
+    <% else %>
+    <%   user = @post.user.id %>
+    <% end %>
+    <%= f.hidden_field :user_id, :value => user.to_s %>
   </div>
   <div class="actions">
     <%= f.submit %>

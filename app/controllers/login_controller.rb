@@ -7,14 +7,22 @@ class LoginController < ApplicationController
     username = params[:username]
     password = params[:password]
     
-    user = User.find_by :name, @username
+    user = User.where(name: username).first
     
-    if password == user.password 
+    if user.nil?
+      redirect_to "/login/?incorrect=user"
+    elsif password == user.password 
+      puts password
+      puts user.password
+      session[:user_id] = user.id
       redirect_to "/"
+    else
+      redirect_to "/login/?incorrect=password"
     end
   end
 
   def out
     session[:user_id] = 0
+    redirect_to "/"
   end
 end

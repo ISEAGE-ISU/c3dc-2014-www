@@ -1,14 +1,17 @@
 <h1>Login#index</h1>
 <p>Find me in app/views/login/index.html.erb</p>
 
-<%= form_for(@login) do |f| %>
+<%= form_tag("/login/in", method: "get") do %>
 <div class="field">
-  <%= f.label :name %><br />
-  <%= f.text_field :username %>
+  <%= label_tag :username, "Username:" %><br />
+  <%= text_field_tag :username %>
 </div>
 
 <div class="field">
-  <%= f.label :Password %><br />
-  <%= f.password_field :username %>
+  <%= label_tag :password, "Password:" %><br />
+  <%= password_field_tag :password %>
+</div>
+<div class="field">
+  <%= submit_tag "Log in" %>
 </div>
 <% end %>

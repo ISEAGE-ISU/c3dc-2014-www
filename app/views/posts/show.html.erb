@@ -17,9 +17,11 @@
 
 <p>
   <b>User:</b>
-  <%= @post.user %>
+  <%= @post.user.name %>
 </p>
 
 
+<% if session[:user_id].to_i != 0 and (@post.user_id == session[:user_id] or User.find(session[:user_id]).moderator)%>
 <%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
 <%= link_to 'Back', posts_path %>
