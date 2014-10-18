@@ -20,6 +20,7 @@
   <%= @user.administrator %>
 </p>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<% if session[:user_id] != 0 and (User.find(session[:user_id]).administrator or session[:user_id] == @user.id) %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
 <%= link_to 'Back', users_path %>

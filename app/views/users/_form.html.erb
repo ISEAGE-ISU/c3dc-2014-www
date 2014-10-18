@@ -13,8 +13,13 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <% if @user.id.nil? %>
+      <%= f.text_field :name %>
+    <% else %>
+      <%= f.text_field :name, :readonly => "readonly" %>
+    <% end %>
   </div>
+  <% if session[:user_id].to_i != 0 and User.find(session[:user_id]).administrator %>
   <div class="field">
     <%= f.label :poster %><br />
     <%= f.check_box :poster %>
@@ -27,8 +32,19 @@
     <%= f.label :administrator %><br />
     <%= f.check_box :administrator %>
   </div>
+  <% else %>
+    <div class="field">
+    <%= f.hidden_field :poster, :value => true %>
+  </div>
   <div class="field">
-    <%= f.label :password %><br />
+    <%= f.hidden_field :moderator, :value => false %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :administrator, :value => false %>
+  </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :password %>
     <%= f.password_field :password %>
   </div>
   <div class="actions">
