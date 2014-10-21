@@ -16,8 +16,11 @@
     <td><%= comment.user %></td>
     <td><%= comment.post %></td>
     <td><%= link_to 'Show', comment %></td>
+    
+<% if session[:user_id].to_i != 0 and (comment.user_id == session[:user_id] or User.find(session[:user_id]).moderator)%>
     <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
     <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% end %>
   </tr>
 <% end %>
 </table>
