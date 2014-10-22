@@ -5,6 +5,9 @@
   <%= @user.name %>
 </p>
 
+<a href="#posts">View Posts</a>
+<a href="#comments">View comments</a>
+
 <p>
   <b>Poster:</b>
   <%= @user.poster %>
@@ -20,7 +23,25 @@
   <%= @user.administrator %>
 </p>
 
-<% if session[:user_id] != 0 and (User.find(session[:user_id]).administrator or session[:user_id] == @user.id) %>
+<a id=posts></a><h2>Posts</h2>
+<div id=posts_for_user>
+  <% @user.posts.each do |post| %>
+    <div class=post_for_user>
+      <%= post.summary %> <%= link_to "View Post", post %>
+    </div>
+  <% end %>
+</div>
+
+<a id=comments></a><h2>Comments</h2>
+<div id=comments_for_user>
+  <% @user.comments.each do |comment| %>
+    <div class=comment_for_user>
+      <%= comment.body %> <%= link_to "View comment", comment %> | <%= link_to "View post", comment.post %>
+    </div>
+  <% end %>
+</div>
+
+<% if session[:user_id].to_i != 0 and (User.find(session[:user_id]).administrator or session[:user_id] == @user.id) %>
   <%= link_to 'Edit', edit_user_path(@user) %> |
 <% end %>
 <%= link_to 'Back', users_path %>

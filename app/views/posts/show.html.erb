@@ -17,7 +17,7 @@
 
 <p>
   <b>User:</b>
-  <%= @post.user.name %>
+  <%= link_to "#{@post.user.name}", @post.user %>
 </p>
 
 <% if session[:user_id].to_i != 0 %>
