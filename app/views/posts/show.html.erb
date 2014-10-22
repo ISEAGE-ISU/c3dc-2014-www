@@ -26,6 +26,18 @@
 
 
 <% if session[:user_id].to_i != 0 and (@post.user_id == session[:user_id] or User.find(session[:user_id]).moderator)%>
-<%= link_to 'Edit', edit_post_path(@post) %> |
+| <%= link_to 'Edit', edit_post_path(@post) %> 
 <% end %>
+
+<h2>Comments</h2>
+
+<div id=comments_of_post>
+  <% @post.comments.each do | comment | %>
+    <div class=comment_of_post>
+      <strong><%= link_to "#{comment.user.name}", comment.user %></strong>
+      <p><%= comment.body %></p>
+    </div>
+  <% end %>
+</div>
+
 <%= link_to 'Back', posts_path %>

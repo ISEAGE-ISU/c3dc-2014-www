@@ -27,7 +27,7 @@
 <div id=posts_for_user>
   <% @user.posts.each do |post| %>
     <div class=post_for_user>
-      <%= post.summary %> <%= link_to "View Post", post %>
+      <%= post.title %> <%= link_to "View Post", post %>
     </div>
   <% end %>
 </div>

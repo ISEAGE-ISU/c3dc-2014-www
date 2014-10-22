@@ -9,6 +9,7 @@
 <body>
 
 <div id="header">
+  <%= link_to "Home", "/" %> |
 <% if session[:user_id].to_i != 0 %>
   Logged in as <%= User.find(session[:user_id]).name %> |
   <%= link_to "Profile", "/users/#{session[:user_id]}" %> |

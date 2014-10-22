@@ -1,6 +1,13 @@
 <div id="index_content">
-<h1>Index#index</h1>
-<p>Find me in app/views/index/index.html.erb</p>
-<p> The most recent post should go here or something </p>
+<h1>Most recent posts</h1>
+<div id="recent_posts">
+<% Post.last(10).each do |post| %>
+  <div class="recent_post">
+    <strong><%= link_to "#{post.title}", post %></strong>
+    <p><%= post.summary %></p>
+  </div>
+<% end %>
+</div>
+
 <%= link_to "View All Posts", "/posts" %>
 </div>
