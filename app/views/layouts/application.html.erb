@@ -20,6 +20,14 @@
 <% end %>
 </div>
 
+<div id=advertisement>
+  <% if @url_of_ad_image == nil %>
+  <p>Set the path to the adserver URL generator in app/controllers/application_controller.rb!</p>
+  <% else %>
+  <%= image_tag @url_of_ad_image %>
+  <% end %>
+</div>
+
 <%= yield %>
 
 <div id="footer">
