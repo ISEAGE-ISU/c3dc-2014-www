@@ -46,7 +46,7 @@
   <%= link_to "Posts Moderation", "/posts" %>
 <% end %>
 <% if session[:user_id].to_i != 0 and User.find(session[:user_id]).administrator%>
-  <%= link_to "Users Administration", "/users" %>
+  | <%= link_to "Users Administration", "/users" %>
 <% end %>
 </p>
 </div>
