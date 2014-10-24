@@ -1,13 +1,18 @@
 <div id="index_content">
+<div class="page-header">
 <h1>Most recent posts</h1>
-<div id="container">
+</div>
+<div class="container">
+<div class="panel panel-default">
 <% Post.last(10).each do |post| %>
-  <div class="hero-unit">
-    <h2><%= link_to "#{post.title}", post %></h2>
+  <div class="panel panel-body">
+    <h3><%= link_to "#{post.title}", post %></h3> 
+    <h6>  by <%= link_to "#{post.user.name}", post.user %></h6>
     <p><%= post.summary.html_safe %></p>
   </div>
 <% end %>
 </div>
 
+</div>
 <%= link_to "View All Posts", "/posts" %>
 </div>

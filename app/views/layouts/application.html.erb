@@ -11,19 +11,22 @@
 </head>
 <body>
 
-<div id="header">
-  <%= link_to "Home", "/" %> |
+<nav class="navbar navbar-default">
+<div class="container-fluid">
+  <ul class="nav navbar-nav">
+  <li> <%= link_to "Home", "/" %></li>
 <% if session[:user_id].to_i != 0 %>
-  Logged in as <%= User.find(session[:user_id]).name %> |
-  <%= link_to "Profile", "/users/#{session[:user_id]}" %> |
-  <%= link_to "Log Out", "/login/out" %>
+  <li><%= link_to "#{User.find(session[:user_id]).name}'s Profile", "/users/#{session[:user_id]}" %> </li>
+  <li><%= link_to "Log Out", "/login/out" %></li>
 <% else %>
-  <%= link_to "Log In", "/login" %> |
-  <%= link_to "Sign Up", "/users/new" %>
+  <li><%= link_to "Log In", "/login" %></li>
+  <li><%= link_to "Sign Up", "/users/new" %></li>
 <% end %>
+  </ul>
+</div>
 </div>
 
-<div id=advertisement>
+<div id=advertisement class="text-center">
   <% if @url_of_ad_image == nil %>
   <p>Set the path to the adserver URL generator in app/controllers/application_controller.rb!</p>
   <% else %>
@@ -33,7 +36,7 @@
 
 <%= yield %>
 
-<div id="footer">
+<div class="navbar">
 <p>
 <% if session[:user_id].to_i != 0 and User.find(session[:user_id]).moderator%>
   <%= link_to "Posts Moderation", "/posts" %>
