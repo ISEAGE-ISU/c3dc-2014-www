@@ -3,7 +3,7 @@
 <div class="panel panel-default">
 <div class="panel panel-body">
   <h2><%= @post.title %></h2>
-  <h4><%= @post.summary %></h4>
+  <h4><%= @post.summary.html_safe %></h4>
   <p>
     <%= @post.body.html_safe %>
   </p>
