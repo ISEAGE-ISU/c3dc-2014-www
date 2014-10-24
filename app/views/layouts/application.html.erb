@@ -30,7 +30,7 @@
   <% if @url_of_ad_image == nil %>
     <p>Set the path to the adserver URL generator in app/controllers/application_controller.rb!</p>
   <% else %>
-    <img alt="Click_here_360" src="http://10.0.133.163/ads/click_here_360.png" />
+    <%= "<img src='http://#{@url_of_ad_image}' />".html_safe %>
   <% end %>
 </div>
 
