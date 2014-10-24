@@ -2,25 +2,15 @@
 <div class="container">
 <div class="panel panel-default">
 <div class="panel panel-body">
-<p>
-  <b>Title:</b>
-  <%= @post.title %>
-</p>
+  <h2><%= @post.title %></h2>
+  <h4><%= @post.summary %></h4>
+  <p>
+    <%= @post.body.html_safe %>
+  </p>
 
-<p>
-  <b>Summary:</b>
-  <%= @post.summary %>
-</p>
-
-<p>
-  <b>Body:</b>
-  <%= @post.body.html_safe %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= link_to "#{@post.user.name}", @post.user %>
-</p>
+  <p>
+    By <%= link_to "#{@post.user.name}", @post.user %>
+  </p>
 </div>
 </div>
 </div>

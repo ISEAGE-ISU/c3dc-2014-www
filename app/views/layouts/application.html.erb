@@ -25,6 +25,7 @@
   </ul>
 </div>
 </div>
+</nav>
 
 <div id=advertisement class="text-center">
   <% if @url_of_ad_image == nil %>
@@ -38,6 +39,9 @@
 
 <div class="navbar">
 <p>
+<% if session[:user_id].to_i != 0 and User.find(session[:user_id]).poster%>
+  <%= link_to "Create a Post", "/posts/new" %>
+<% end %>
 <% if session[:user_id].to_i != 0 and User.find(session[:user_id]).moderator%>
   <%= link_to "Posts Moderation", "/posts" %>
 <% end %>

@@ -19,7 +19,8 @@
     <%= f.hidden_field :user_id, :value=>session[:user_id] %>
   </div>
   <div class="field">
-    <%= f.hidden_field :post_id, :value=>params[:post_reply] %>
+    <%= f.hidden_field :post_id, :value=>params[:post_reply] unless params[:post_reply].nil? %>
+    <%= f.hidden_field :post_id, :value=>@comment.post_id unless @comment.post_id.nil? %>
   </div>
   <div class="actions">
     <%= f.submit %>
