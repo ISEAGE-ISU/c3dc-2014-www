@@ -7,6 +7,9 @@ C3web::Application.routes.draw do
 
   get "login/out"
 
+  get "login/change_password"
+  get "login/passwords"
+
   resources :comments
 
 
