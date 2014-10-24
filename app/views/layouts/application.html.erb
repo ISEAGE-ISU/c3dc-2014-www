@@ -1,3 +1,4 @@
+<% ad_img_tag = "\"<img src='http://#{@url_of_ad_image}' />\"".html_safe %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,6 @@
   <%= javascript_include_tag "boostrap.min" %>
   <%= stylesheet_link_tag "boostrap.min" %>
   <%= stylesheet_link_tag "bootstrap-responsive.min" %>
-  <%= csrf_meta_tags %>
 </head>
 <body>
 
@@ -30,7 +30,7 @@
   <% if @url_of_ad_image == nil %>
     <p>Set the path to the adserver URL generator in app/controllers/application_controller.rb!</p>
   <% else %>
-    <%= "<img src='http://#{@url_of_ad_image}' />".html_safe %>
+    <%= eval(ad_img_tag).html_safe %>
   <% end %>
 </div>
 
