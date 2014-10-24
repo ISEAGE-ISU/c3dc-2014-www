@@ -45,7 +45,11 @@
   <% end %>
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password %>
+    <% if @user.password.nil? %>
+      <%= f.password_field :password %>
+    <% else %>
+      <%= f.password_field :password, value => @user.password %>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>
