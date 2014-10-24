@@ -15,8 +15,8 @@
   <tr>
     <td><%= post.title %></td>
     <td><%= post.summary %></td>
-    <td><%= post.body %></td>
-    <td><%= User.find(post.user_id).name %></td>
+    <td><%= post.body.html_safe %></td>
+    <td><%= post.user.name %></td>
     <td><%= link_to 'Show', post %></td>
     
 <% if session[:user_id].to_i != 0 and (post.user_id == session[:user_id] or User.find(session[:user_id]).moderator)%>
