@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<div class="container">
+<div class="panel panel-default">
+<div class="panel panel-body">
 <p>
   <b>Title:</b>
   <%= @post.title %>
@@ -19,7 +21,9 @@
   <b>User:</b>
   <%= link_to "#{@post.user.name}", @post.user %>
 </p>
-
+</div>
+</div>
+</div>
 <% if session[:user_id].to_i != 0 %>
 <%= link_to "Comment on this post", "/comments/new?post_reply=#{@post.id}" %>
 <% end %>
@@ -29,15 +33,17 @@
 | <%= link_to 'Edit', edit_post_path(@post) %> 
 <% end %>
 
-<h2>Comments</h2>
+<h3 align="center">Comments</h3>
 
-<div id=comments_of_post>
+<div class="container">
+<div class="panel panel-default">
   <% @post.comments.each do | comment | %>
-    <div class=comment_of_post>
+    <div class="panel panel-body">
       <strong><%= link_to "#{comment.user.name}", comment.user %></strong>
       <p><%= comment.body.html_safe %></p>
     </div>
   <% end %>
+</div>
 </div>
 
 <%= link_to 'Back', posts_path %>
