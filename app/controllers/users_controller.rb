@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    return forbidden unless isCorrectUser @user.id or isAdministrator
   end
 
   # POST /users
@@ -51,12 +52,16 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+    @user.moderator = false
+    @user.administrator = false
+    @user.poster = false
   end
 
   # PUT /users/1
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    return forbidden unless isCorrectUser @user.id or isAdministrator
     params[:password] = @user.password if params[:password] == ''
 
     respond_to do |format|
@@ -68,11 +73,17 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+    unless isAdministrator
+      @user.poster = false
+      @user.moderator = false
+      @user.administrator = false
+    end
   end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    return forbidden unless isAdministrator
     @user = User.find(params[:id])
     @user.destroy
 

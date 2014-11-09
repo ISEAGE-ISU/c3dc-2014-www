@@ -24,8 +24,9 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
+    return forbidden unless isPoster
     @post = Post.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post }
@@ -35,13 +36,18 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+    return forbidden unless isCorrectUser @post.user_id or isModerator
   end
 
   # POST /posts
   # POST /posts.json
   def create
+    unless isPoster
+      forbidden
+      return
+    end
     @post = Post.new(params[:post])
-
+    
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -57,6 +63,7 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
+    return forbidden unless isCorrectUser @post.user_id or isModerator
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
@@ -74,6 +81,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    return forbidden unless isAdministrator
 
     respond_to do |format|
       format.html { redirect_to posts_url }

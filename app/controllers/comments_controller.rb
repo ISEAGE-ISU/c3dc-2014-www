@@ -24,6 +24,7 @@ class CommentsController < ApplicationController
   # GET /comments/new
   # GET /comments/new.json
   def new
+    return forbidden unless isLoggedIn
     @comment = Comment.new
 
     respond_to do |format|
@@ -35,11 +36,13 @@ class CommentsController < ApplicationController
   # GET /comments/1/edit
   def edit
     @comment = Comment.find(params[:id])
+    return forbidden unless isCorrectUser @comment.user_id or isModerator
   end
 
   # POST /comments
   # POST /comments.json
   def create
+    return forbidden unless isLoggedIn
     @comment = Comment.new(params[:comment])
 
     respond_to do |format|
@@ -57,6 +60,7 @@ class CommentsController < ApplicationController
   # PUT /comments/1.json
   def update
     @comment = Comment.find(params[:id])
+    return forbidden unless isCorrectUser @comment.user_id or isModerator
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
@@ -73,6 +77,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment = Comment.find(params[:id])
+    return forbidden unless isCorrectUser @comment.user_id or isModerator
     @comment.destroy
 
     respond_to do |format|
